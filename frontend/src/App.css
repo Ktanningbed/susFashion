@@ -8,17 +8,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; */
-  /* flex-direction: column;
-  background: #e0eafc;
-  background: -webkit-linear-gradient(to right, #cfdef3, #e0eafc);
-  background: linear-gradient(to right, #cfdef3, #e0eafc); */
-} 
-
 .upload-container {
   max-width: 650px;
   width: 650px;

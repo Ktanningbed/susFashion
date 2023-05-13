@@ -2,7 +2,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ImageUpload from './components/ImageUpload';
-import Home from './components/Home';
+import Home from './pages/Home';
 
 function App() {
   return (

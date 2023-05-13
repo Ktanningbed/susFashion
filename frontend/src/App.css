@@ -1,6 +1,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost&family=Lato:wght@300;400&family=Poppins:wght@200;300;400;500&display=swap');
 
+body {
+  background-color: var(--green);
+}
+
+:root {
+  --green: #6F9283;
+  --lighter-green: #8d9f87;
+  --purple: #696d7d;
+  --beige: #f5e2c3;
+}
+
 * {
   margin: 0;
   padding: 0;

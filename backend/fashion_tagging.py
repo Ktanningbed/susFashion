@@ -3,20 +3,24 @@ import requests
 import json
 from typing import Any
 from dotenv import load_dotenv
+from urllib.request import urlopen
 
-load_dotenv
+load_dotenv()
+
 key = os.environ.get('FASHION_KEY')
 
 
 def get_tags(path: str) -> tuple[str, list[str]]:
-    """Returns the probable gender and top 3 most descriptive tags for an input clothing image.
+    """Returns the probable gender and top 3 most descriptive tags for an input clothing image (path/url).
     """
     tags = get_fashion_info(path)
-    return parse_data(tags)
+    common = parse_data(tags)
+    print(f'tags: {common}')
+    return common
 
 
 def get_fashion_info(path: str) -> dict[str: Any]:
-    """Given an image path, use the lykdat fashion tagging API to return a dictionary of the fashion info.
+    """Given an image path/url, use the lykdat fashion tagging API to return a dictionary of the fashion info.
     """
     url = "https://cloudapi.lykdat.com/v1/global/search"
 
@@ -24,8 +28,11 @@ def get_fashion_info(path: str) -> dict[str: Any]:
         'api_key': key,
     }
 
-    image_file = open(path, 'rb')
-    files = [('image', ('image.jpg', image_file, 'image/jpeg'))]
+    # open the image url and read the data
+    with urlopen(path) as img_f:
+        img = img_f.read()
+
+    files = [('image', ('image.jpg', img, 'image/jpeg'))]
 
     response = requests.post(url, data=headers, files=files)
     return json.loads(response.content)

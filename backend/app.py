@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.get('/similar_sustainable/<path>')
 def return_similar_sustainable(path: str) -> str:
-    """Given a path to an image, returns a json file consisting of similar, but eco-friendly products with each of their
+    """Given a path/url to an image, returns a json file consisting of similar, but eco-friendly products with each of their
     brands, prices, images, and product link.
     """
     tags = get_tags(path)

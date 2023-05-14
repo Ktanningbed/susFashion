@@ -75,7 +75,7 @@ def parse_data(tags: dict[str: Any], n: int = 3) -> tuple[str, list[str]]:
     i = 0
     count = 0
     while count < n:
-        if len(keywords[i]) > 1:
+        if len(keywords[i]) > 2:
             common.append(keywords[i])
             count += 1
         i += 1

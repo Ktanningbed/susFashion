@@ -65,20 +65,39 @@
     border-radius: 10px;
     border: none;
     padding: 10px;
-    margin: 5vh;
+    margin: 1vh;
     width: 30vw;
     max-width: 300px;
     text-align: center;
-    background-color: white;
+    background-color: #efeff1;
 }
 
 .upload-btn:hover {
     border-radius: 10px;
     border: none;
     padding: 10px;
-    margin: 5vh;
+    margin: 1vh;
     width: 30vw;
     background-color: var(--lighter-green);
     color: white;
     cursor: pointer;
 }
+
+.text-input{
+    border: none;
+    width: 590px;
+    background-color: #efeff1;
+    padding:10px;
+    border-radius: 10px;
+    
+}
+.text-input:focus{
+    outline:none;
+}
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+

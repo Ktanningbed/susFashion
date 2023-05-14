@@ -1,23 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CardItem from './CardItem'
 import dress from '../images/Edgarfield.jpg';
 
 function Cards({img}) {
-  console.log(img.state)
+  const [clothing, setClothing] = useState([])
+  const manageUpload = () => {
+    fetch("http://192.168.68.131:5000/", {
+      method: 'POST', 
+      headers: {'Content-Type': 'application/json'}, 
+      body: JSON.stringify({"link": img.state})}).then((res) => 
+        res.json()
+        .then((data) => {
+          setClothing(data)
+          // console.log(data)
+        }))
+
+      
+  }
+  useEffect(() => {
+    manageUpload()
+    console.log(clothing)
+  }, [])
+  
+
   return (
     <div className='cards'>
         <div className="cards-container">
             <div className="large-card">
-              <li className="cards-item-large">
-              <CardItem src={img.state}
-                text='Your Item'
-                path='/' />
-              </li> 
+              <img className = "original-image" src={img.state} alt = 'original'></img>
             </div>
             <div className='small-card'>
-              <h1>Here’s what we found! Click on any of the items below to shop!</h1> 
+              <h1>Here's what we found! Click on any of the items below to shop!</h1> 
                 <ul className='small-cards'>
-                  <li className="cards-item">
+                  {clothing.length > 0 && 
+                    // <li className="cards-item">
+                    //   <CardItem src={clothing[0][0].img_src}
+                    //   text={clothing[0][0].name}
+                    //   alt={clothing[0][0].name}
+                    //   price={clothing[0][0].price}
+                    //   path={`/${clothing[0][0].link}`} />  
+                    // </li>
+
+                  clothing.map(data => {
+                    return (<li className="cards-item">
+                      <CardItem src={data.img_src}
+                      text={data.name}
+                      alt={data.name}
+                      price={data.price}
+                      path={data.link} />  
+                    </li>)
+                  })}
+
+
+                  {/* <li className="cards-item">
                       <CardItem src={dress}
                       text='Item Name'
                       alt="option 1"
@@ -61,7 +96,7 @@ function Cards({img}) {
                     price='$20.00'
                     alt="option 6"
                     path='/' />  
-                  </li>
+                  </li> */}
 
                 </ul>
             </div>

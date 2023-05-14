@@ -10,8 +10,8 @@ function Nav() {
         </div>
         <div className="nav-buttons">
             <Link className="nav-button" to="/"><h3>Home</h3></Link>
-            <Link className="nav-button" to="/"><h3>About</h3></Link>
-            <Link className="nav-button" to="/"><h3>Contact</h3></Link>
+            <Link className="nav-button" to="/about"><h3>About</h3></Link>
+            <Link className="nav-button" to="/contact"><h3>Contact</h3></Link>
         </div>
     </div>
   )

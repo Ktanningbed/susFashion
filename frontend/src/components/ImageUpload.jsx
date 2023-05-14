@@ -1,45 +1,76 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import '../styles/ImageUpload.css'
 import { useDropzone } from 'react-dropzone'
 import { Link } from 'react-router-dom'
 
-
-
 const ImageUpload = ({onClose, show}) => {
-const [showText, setShowText] = useState(true)
-const [uploadText, setUploadText] = useState("upload your clothing")
+  const [showText, setShowText] = useState(true)
+  const [uploadText, setUploadText] = useState("upload your clothing")
 
+  
 
-  const [image, setImage] = useState([])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      setImage(
-        acceptedFiles.map((upFile) => Object.assign(upFile, {
-          preview: URL.createObjectURL(upFile)
-        }))
-      )
-    }
-  })
+  const [selectedImages, setSelectedImages] = useState([])
+  // const {getRootProps, getInputProps, isDragActive} = useDropzone({
+  //   accept: "image/*",
+  //   onDrop: (acceptedFiles) => {
+  //     setImage(
+  //       acceptedFiles.map((upFile) => Object.assign(upFile, {
+  //         preview: URL.createObjectURL(upFile)
+  //       }))
+  //     )
+  //   }
+  // })
+  const [link, setLink] = useState('');
+  
+  const onDrop = useCallback(acceptedFiles => {
+    setSelectedImages(acceptedFiles.map(file => 
+      Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })))
+  }, [])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
   useEffect(() => {
-    if(image.length > 0) {
+    if(selectedImages.length > 0) {
       setUploadText("re-upload your clothing")
     }
-  }, [image.length])
+  }, [selectedImages.length])
   if(!show) {
     return null;
   }
 
   
 
+  
+  
+
+  // //firestore upload
+  // const uploadPost = async() => {
+  //   console.log(selectedImages)
+  //   const docRef = await addDoc(collection(db, "posts"), {
+  //     timestamp: serverTimestamp()
+  //   })
+  //   await Promise.all(
+  //       const imageRef = ref(storage, `posts/${docRef.id}/${image.path}`);
+  //       uploadBytes(imageRef, image, "data_url").then(async() => {
+  //         const downloadURL = await getDownloadURL(imageRef);
+  //         await updateDoc(doc(db, "posts", docRef.id),{
+  //           images:arrayUnion(downloadURL)
+  //         })
+  //       })
+  //   )
+
+  // }
+
+
   return (
     <>
       <div className="image-container">
-          {image.length > 0 &&
+          {selectedImages.length > 0 &&
            (
-            <div key={image[0].preview} className="image-content">
-              <img className = "uploaded-image" src={image[0].preview}alt="preview"/>
-              <Link className="upload-btn" to='/result' state={image[0].preview}>upload</Link>
+            <div key={selectedImages[0].preview} className="image-content">
+              <img className = "uploaded-image" src={selectedImages[0].preview}alt="preview"/>
+              <Link className="upload-btn" to='/result' state={selectedImages[0].preview}>upload</Link>
             </div>
             
           )}
@@ -73,6 +104,10 @@ const [uploadText, setUploadText] = useState("upload your clothing")
           <span className="support">Supports: JPEG, JPG, PNG</span> */}
         </div>
         
+        <form>
+          <input onChange={(e)=>setLink(e.target.value)} className="text-input" type="text" name="link" placeholder='enter link to clothing item'/>
+          <Link className="upload-btn" to='/result' state={link}>upload</Link>
+        </form>
       </div>
       
     </>

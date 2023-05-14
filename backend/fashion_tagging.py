@@ -3,7 +3,7 @@ import requests
 import json
 from typing import Any
 from dotenv import load_dotenv
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 load_dotenv()
 
@@ -29,7 +29,11 @@ def get_fashion_info(path: str) -> dict[str: Any]:
     }
 
     # open the image url and read the data
-    with urlopen(path) as img_f:
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+    hdrs = {'User-Agent': user_agent}
+    request = Request(path, headers=hdrs)
+
+    with urlopen(request) as img_f:
         img = img_f.read()
 
     files = [('image', ('image.jpg', img, 'image/jpeg'))]

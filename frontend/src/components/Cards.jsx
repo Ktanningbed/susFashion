@@ -5,7 +5,7 @@ import dress from '../images/Edgarfield.jpg';
 function Cards({img}) {
   const [clothing, setClothing] = useState([])
   const manageUpload = () => {
-    fetch("http://192.168.68.131:5000/", {
+    fetch("http://127.0.0.1:5000/", {
       method: 'POST', 
       headers: {'Content-Type': 'application/json'}, 
       body: JSON.stringify({"link": img.state})}).then((res) => 
@@ -99,6 +99,7 @@ function Cards({img}) {
                   </li> */}
 
                 </ul>
+                <h2>Please be patient, the query takes a bit of time...</h2>
             </div>
         </div>
     </div>

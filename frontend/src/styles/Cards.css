@@ -19,7 +19,7 @@
 }
 
 .small-cards {
-    height: 80vh;
+    height: 75vh;
     overflow: auto;
 }
 
@@ -42,6 +42,11 @@ h1 {
     font-family: 'Wix Madefor Display', sans-serif;
     font-size: 1.1rem;
     color: white;
+}
+
+h2 {
+    color: #8aab91;
+    font-size: 12px
 }
 
 .cards-container {

@@ -2,8 +2,10 @@ import os
 import requests
 import json
 from typing import Any
+from dotenv import load_dotenv
 
-key = os.environ.get('fas_key')
+load_dotenv
+key = os.environ.get('FASHION_KEY')
 
 
 def get_tags(path: str) -> tuple[str, list[str]]:

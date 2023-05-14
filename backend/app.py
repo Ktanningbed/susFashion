@@ -10,10 +10,6 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.get('/test')
-def return_test():
-    return 'HI'
-
 @app.route('/', methods=['POST'])
 def return_similar_sustainable() -> str:
     """Given a path/url to an image, returns a json file consisting of similar, but eco-friendly products with each of their

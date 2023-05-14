@@ -6,17 +6,15 @@ from typing import Any
 key = os.environ.get('fas_key')
 
 
-import requests
-import os
-import base64
-import json
-from typing import Any
-
-key = os.environ.get('fas_key')
+def get_tags(path: str) -> tuple[str, list[str]]:
+    """Returns the probable gender and top 3 most descriptive tags for an input clothing image.
+    """
+    tags = get_fashion_info(path)
+    return parse_data(tags)
 
 
-def get_fashion_tags(path: str) -> dict[str: Any]:
-    """Given an image path, use the lykdat fashion tagging API to return a dictionary of the fashion tags.
+def get_fashion_info(path: str) -> dict[str: Any]:
+    """Given an image path, use the lykdat fashion tagging API to return a dictionary of the fashion info.
     """
     url = "https://cloudapi.lykdat.com/v1/global/search"
 
@@ -33,7 +31,7 @@ def get_fashion_tags(path: str) -> dict[str: Any]:
 
 def parse_data(tags: dict[str: Any], n: int = 3) -> tuple[str, list[str]]:
     """Given a fashion tags dictionary (response from API), observe the most common words in the similar proucts,
-    and produce a list of tags"""
+    and produce a list of tags."""
     # select the appropriate data
     similar_products = tags['data']['result_groups'][0]['similar_products']
     names = [product['name'].lower() for product in similar_products]

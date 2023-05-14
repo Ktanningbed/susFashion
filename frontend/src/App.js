@@ -5,6 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import Home from "./Pages/Home";
 import Nav from './components/Nav';
 import Results from './Pages/Results';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+
 function App() {
   return (
     <>
@@ -12,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/result" element={<Results/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
       </Routes>
     </>
   );

@@ -1,38 +1,45 @@
 .cards {
-    padding: 4rem;
+    padding: 5vw;
 }
 
 .large-card {
     width: 50%;
 }
 
+.original-image {
+    width: 80%;
+    max-height: 70%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
 .small-card {
+    text-align: center;
     width: 50%;
 }
 
 .small-cards {
-    height: 350px;
+    height: 80vh;
     overflow: auto;
 }
 
 h5 {
-    height: 50px;
+    height: 6vh;
     text-overflow: ellipsis; 
     overflow: hidden; 
-    white-space: nowrap;
+    margin-bottom: 2vh;
 }
 
 ul li{
     display: inline-block;
     list-style-type: none;
-    margin: 10px;
+    margin: 1vh;
 }
 
 h1 {
     border: none;
-    height: 60px;
-    padding: 0 20px;
-    font-family: 'Quicksand', sans-serif;
+    height: 6vh;
+    font-family: 'Wix Madefor Display', sans-serif;
     font-size: 1.1rem;
     color: white;
 }
@@ -42,25 +49,20 @@ h1 {
     width: 100%;
 }
 
-.cards-items {
-    margin-bottom: 24px;
-}
-
 .cards-item {
     width: 25%;
-    height: 300px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    border-radius: 10px;
-    background: var(--beige);
+    height: 30vh;
+    margin: 1vh;
+    border-radius: 30px;
+    background: var(--lighter-green);
 }
 
 .cards-item-large {
     display:inline-block;
     width: 80%;
+    height: 70vh;
     flex: 1;
-    border-radius: 10px;
+    border-radius: 30px;
     background: var(--beige);
 }
 
@@ -68,7 +70,7 @@ h1 {
     display: flex;
     flex-flow: column;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 30px;
     overflow: hidden;
     text-decoration: none;
 }
@@ -77,14 +79,8 @@ h1 {
     position: relative;
     width: 100%;
     height: 10px;
-    padding-top: 67%;
+    padding-top: 80%;
 }
-
-.fade-img {
-    animation-name: fade-img;
-    animation-duration: 2s;
-}
-
 
 .cards-item-img {
     position: absolute;
@@ -98,22 +94,20 @@ h1 {
     height: 150%;
     max-height: 100%;
     object-fit: cover;
-    transition: all 0.2s linear;
-}
-
-.cards-item-img:hover {
-    transform: scale(1.1);
 }
 
 .cards-item-info {
-    padding: max(10px, 5%);
+    text-align: center;
+    padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 0px;
 }
 
 .cards-item-text {
     color: black;
-    font-size: 15px;
+    font-size: 20px;
+    font-weight: 1000;
     line-height: 24px;
     text-align: left;
     text-overflow: ellipsis;
@@ -122,8 +116,9 @@ h1 {
 .cards-item-price {
     color: black;
     font-size: 12px;
-    font: Arial;
+    font-family: 'Wix Madefor Display', sans-serif;
+    font-weight: 300;
     line-height: 24px;
-    text-align: left;
+    text-align: right;
 }
 

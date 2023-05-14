@@ -1,40 +1,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost&family=Lato:wght@300;400&family=Poppins:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 body {
   background-color: var(--green);
+  font-family: 'Quicksand', sans-serif;
 }
 
 :root {
   --green: #6F9283;
   --lighter-green: #8d9f87;
   --purple: #696d7d;
-  --beige: #f5e2c3;
+  --beige: rgb(215, 208, 197);
+  --beige-highlight: rgb(154, 148, 136);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-.upload-container {
-  max-width: 650px;
-  width: 650px;
-  width: 100%;
-  padding: 30px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.drag-area {
-  height: 400px;
-  border: 3px dashed #e0eafc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 10px auto;
+  font-family: 'Quicksand', sans-serif;
 }

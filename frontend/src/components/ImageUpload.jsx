@@ -1,15 +1,81 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import '../styles/ImageUpload.css'
+import { useDropzone } from 'react-dropzone'
+import { Link } from 'react-router-dom'
 
-function ImageUpload() {
+
+
+const ImageUpload = ({onClose, show}) => {
+const [showText, setShowText] = useState(true)
+const [uploadText, setUploadText] = useState("upload your clothing")
+
+
+  const [image, setImage] = useState([])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setImage(
+        acceptedFiles.map((upFile) => Object.assign(upFile, {
+          preview: URL.createObjectURL(upFile)
+        }))
+      )
+    }
+  })
+  useEffect(() => {
+    if(image.length > 0) {
+      setUploadText("re-upload your clothing")
+    }
+  }, [image.length])
+  if(!show) {
+    return null;
+  }
+
+  
+
   return (
-    <div className="upload-container">
-      <h3>Upload your Image</h3>
-      <div className="drag-area">
-        <span className="header">Drag & Drop</span>
-        <span className="header">or <span className="button">browse</span></span>
-        <span className="support">Supports: JPEG, JPG, PNG</span>
+    <>
+      <div className="image-container">
+          {image.length > 0 &&
+           (
+            <div key={image[0].preview} className="image-content">
+              <img className = "uploaded-image" src={image[0].preview}alt="preview"/>
+              <Link className="upload-btn" to='/result' state={image[0].preview}>upload</Link>
+            </div>
+            
+          )}
+          {/* {image.map((upFile) => {
+            console.log(image)
+            return (
+              <div key={upFile.preview} className="image-content">
+                <img className = "uploaded-image" src={upFile.preview}alt="preview"/>
+                <Link className="upload-btn" to='/result' state={upFile.preview}>upload</Link>
+              </div>
+              
+            )
+          })} */}
+        </div>
+      <div className="upload-container">
+        <div className='top-text'>
+          <h3>{uploadText}</h3>
+          <button className="close-button" onClick={onClose}>x</button>
+        </div>
+        
+        <div {...getRootProps()} className={showText ? "drag-area": "drag-area-done"}>
+            <div {...getInputProps()} />
+            {
+                isDragActive ? <p>drop image here</p> : <p>drag & drop or <b>click</b> to browse</p>
+            }
+
+          
+
+          {/* <span className="header">Drag & Drop</span>
+          <span className="header">or <button className="button">browse</button></span>
+          <span className="support">Supports: JPEG, JPG, PNG</span> */}
+        </div>
+        
       </div>
-    </div>
+      
+    </>
   )
 }
 

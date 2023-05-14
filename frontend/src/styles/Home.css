@@ -1,3 +1,30 @@
-body {
+.home {
     background-color: var(--green);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    padding-top: 20vh;
+}
+
+.imageUpload {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: 5vh;
+    width: 50%;
+    max-width: 300px;
+}
+
+.imageUpload:hover {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: 5vh;
+    width: 30vw;
+    background-color: var(--lighter-green);
+    color: white;
+    cursor: pointer;
 }

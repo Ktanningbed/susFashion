@@ -39,15 +39,15 @@ def scrape_thredup(tags: list[str]) -> list[dict[str, str]]:
         try:
             # get product name
             name = tag.contents[2].a.h3.string
-            print(f'name: {name}')
+            # print(f'name: {name}')
 
             # get image source
             img_src = tag.contents[0].img['src']
-            print(f'img_src: {img_src}')
+            # print(f'img_src: {img_src}')
 
             # get product link
             link = 'https://www.thredup.com/' + str(tag.contents[1]['href'])
-            print(f'product_link: {link}')
+            # print(f'product_link: {link}')
 
             # find price
             prices = tag.find_all(string=re.compile('^\d+.\d{1,2}$'))
@@ -62,8 +62,8 @@ def scrape_thredup(tags: list[str]) -> list[dict[str, str]]:
             prices.sort()
             price = '$' + str(prices[1])
 
-            print(f'price: {price}')
-            print()
+            # print(f'price: {price}')
+            # print()
             products.append({
                 'name': name,
                 'img_src': img_src,
@@ -74,4 +74,3 @@ def scrape_thredup(tags: list[str]) -> list[dict[str, str]]:
             pass
 
     return products
-

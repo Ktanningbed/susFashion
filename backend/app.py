@@ -1,11 +1,18 @@
-import requests
+from flask_cors import CORS, cross_origin
 from typing import Any
 from flask import Flask, request
 from fashion_tagging import get_tags
 from scrape import scrape_products
 import json
 
+
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+@app.get('/test')
+def return_test():
+    return 'HI'
 
 @app.route('/', methods=['POST'])
 def return_similar_sustainable() -> str:
@@ -20,7 +27,10 @@ def return_similar_sustainable() -> str:
 
     # search the image for tags and then find similar products on thredUP
     tags = get_tags(path)
-    output = json.dumps(scrape_products(tags))
+    output = scrape_products(tags)
 
-    print(output)
-    return output, 200
+    with open('latest_result.json', 'w') as w_json:
+        json.dump(output, w_json, indent=3)
+    print(output[:6])
+
+    return json.dumps(output[:6], indent=3), 200
